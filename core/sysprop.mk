@@ -29,6 +29,9 @@ POST_PROCESS_PROPS := $(HOST_OUT_EXECUTABLES)/post_process_props$(HOST_EXECUTABL
 # $(1): Partition name
 # $(2): Output file name
 define generate-common-build-props
+    echo "persist.sys.pihooks_FINGERPRINT?=$(PIHOOKS_BUILD_GMS_FINGERPRINT)" >> $(2);\
+    echo "persist.sys.pihooks_mainline_FINGERPRINT?=$(PIHOOKS_BUILD_FINGERPRINT)" >> $(2);\
+    echo "persist.sys.pihooks_mainline_MODEL?=$(PIHOOKS_MODEL_SPOOF)" >> $(2);\
     bash -c '\
     $(or $(PRODUCT_BUILD_PROP_OVERRIDES),:);\
     echo "####################################" >> $(2);\
